@@ -1,0 +1,113 @@
+<html>
+
+<head>
+    <title>Database Example</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+    <link rel="stylesheet" href="https://bootswatch.com/4/spacelab/bootstrap.min.css">
+
+    <link href="../css/style.css" rel="stylesheet">
+
+    <script>window.$ = window.jQuery = require('jquery');</script>
+
+    <script src='../js/sessionStorage.js' type="text/javascript"></script>
+    <script src='../js/sqlConnection.js' type="text/javascript"></script>
+
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-7 mx-auto text-white text-center pt-5">
+                <h1 class="display-4">Database Example</h1>
+                <p class="lead mb-0">An example by Scific</p>
+            </div>
+        </div><!-- End -->
+
+
+        <div class="row py-5 px-4">
+            <div class="col-xl-6 col-md-6 col-sm-6 mx-auto">
+
+                <!-- Profile widget -->
+                <div class="bg-white shadow rounded overflow-hidden">
+                    <div class="px-4 pt-0 pb-4 bg-dark">
+                        <div class="media align-items-end profile-header mb-4">
+                            <div class="profile mr-3">
+                                <img id="profileImage"
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQyNIwwgtaPLj2l995n0y6Kq0qEm63q4A5OLp2cSMfEbcEgFmAd"
+                                    alt="..." width="130" class="rounded mb-2 img-thumbnail">
+                                <span class="btn btn-dark btn-sm btn-block btn-file">
+                                    Change Image <input type="file" onchange="onFileSelected(event)" accept="image/*">
+                                </span>
+                            </div>
+                            <div class="media-body mb-5 ">
+                                <h4 id="nameText" class="mt-0 mb-0 text-white"></h4>
+                                <p class="small mb-4" id="idText"> <i class="fa fa-map-marker mr-2"></i>Id</p>
+                                <p class="small mb-4" id="jobText"> <i class="fa fa-map-marker mr-2"></i>Job</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="py-4 px-4 mt-4">
+                        <div class="d-flex align-items-center justify-content-between mb-3">
+                            <h5 class="mb-0">Examples</h5>
+                        </div>
+                        <div class="row">
+                            <button id="userManagementBtn" type="button" class="btn btn-dark btn-lg btn-block">
+                                User Management</button>
+                            <button id="userReportBtn" type="button" class="btn btn-dark btn-lg btn-block">
+                                User Report</button>
+                        </div>
+                    </div>
+                    <div class="row p-4">
+                        <input type="button" class="btn btn-danger" value="Log Out" id="logoutBtn">
+                    </div>
+                </div><!-- End profile widget -->
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    $("#nameText").text(getCurrentName() + " " + getCurrentLastName());
+    $("#idText").text(getCurrentId());
+    $("#jobText").text(getCurrentJob());
+
+    // Next thing is to upload it to the server...
+    async function onFileSelected(event) {
+        var selectedFile = event.target.files[0];
+        var reader = new FileReader();
+
+        var imgtag = document.getElementById("profileImage");
+        imgtag.title = selectedFile.name;
+
+        reader.onload = function (event) {
+            imgtag.src = event.target.result;
+        };
+
+        reader.readAsDataURL(selectedFile);
+    }
+
+    $("#logoutBtn").click(function () {
+        logOut();
+    });
+
+    $("#userManagementBtn").click(function () {
+        location.href = "./userManagement.html";
+    });
+
+    $("#userReportBtn").click(function () {
+        location.href = "./userReport.html";
+
+    });
+
+</script>
+
+
+</html>

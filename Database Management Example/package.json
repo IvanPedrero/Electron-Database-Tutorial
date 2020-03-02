@@ -1,0 +1,19 @@
+{
+  "name": "system-specs",
+  "version": "1.0.0",
+  "description": "Simple system monitor app",
+  "main": "./main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Ivan Pedrero",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^8.0.2",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "jquery": "^3.4.1",
+    "jspdf": "^1.5.3",
+    "mysql": "^2.18.1"
+  }
+}

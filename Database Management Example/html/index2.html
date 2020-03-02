@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>System Information App</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/spacelab/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <h1>System Information App</h1>
+        <div id='output'></div>
+        <div class="conatiner m-3">
+            <input type="button" class="btn btn-primary" id="winBtn" value="App Data" onclick="openNewWindow();"></input>
+        </div>
+    </div>
+</body>
+<script>
+    var v = sessionStorage.getItem('window');
+    console.log(v);
+    //console.log(process);
+    let output = `
+        <div class="container mt-4">
+            <h3 class="page-header">System Data</h3>
+            <ul class="list-group">
+                <li class="list-group-item">System Architecture: ${process.arch}</li>
+                <li class="list-group-item">Processor ID: ${process.env.PROCESSOR_IDENTIFIER}</li>  
+                <li class="list-group-item">Processor Architecture: ${process.env.PROCESSOR_ARCHITECTURE}</li>  
+                <li class="list-group-item">OS: ${process.env.OS}</li>  
+            </ul>           
+        </div>
+    `;
+
+    document.getElementById('output').innerHTML = output;
+
+    function openNewWindow(){
+        location.href = "./index.html";
+    }
+
+</script>
+<script href='./renderer.js'></script>
+
+</html>

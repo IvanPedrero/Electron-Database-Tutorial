@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>System Information App</title>
+    <link rel="stylesheet" href="https://bootswatch.com/4/spacelab/bootstrap.min.css">
+
+    <!--npm install jquery --save-->
+    <script>window.$ = window.jQuery = require('jquery');</script> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+    
+</head>
+
+<body>
+    
+    <div id="content" class="container mt-4">
+        <h1>System Information App</h1>
+        <div id='output'></div>
+        <div class="conatiner m-3">
+            <input type="button" class="btn btn-primary" id="winBtn" value="System Data" onclick="openNewWindow();"></input>
+            <input type="button" class="btn btn-primary" id="loginBtn" value="Log In" onclick="openLoginWindow();"></input>
+            <button id="btnPrint">Click</button>
+        </div>
+        
+    </div>
+</body>
+
+<script>
+    //console.log(process);
+    let output = `
+        <div class="container mt-4">
+            <h3 class="page-header">App Version Data</h3>
+            <ul class="list-group">
+                <li class="list-group-item">Node: ${process.versions.node}</li>
+                <li class="list-group-item">Chrome: ${process.versions.chrome}</li>  
+                <li class="list-group-item">Electron: ${process.versions.electron}</li>  
+            </ul>
+        </div>
+    `;
+
+    document.getElementById('output').innerHTML = output;
+
+    function openNewWindow(){
+        location.href = "./index2.html";
+    }
+
+    function openLoginWindow(){
+        location.href = "./login.html";
+    }
+</script>
+
+<!--Generate pdf report.-->
+<script type="text/javascript">
+    $("#btnPrint").click(function () {
+        let doc = new jsPDF('p', 'pt', 'a4');
+        doc.addHTML(document.body, function () {
+            doc.save('test_report.pdf');
+        });
+    });
+</script>
+
+<script href='./renderer.js'></script>
+
+</html>
